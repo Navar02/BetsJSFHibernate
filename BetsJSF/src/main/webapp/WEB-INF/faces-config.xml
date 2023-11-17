@@ -6,24 +6,24 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
     version="2.0">
 	<managed-bean>
-		<managed-bean-name>login</managed-bean-name>
-		<managed-bean-class>modelo.bean.LoginBean</managed-bean-class>
-		<managed-bean-scope>application</managed-bean-scope>
+		<managed-bean-name>createQuestions</managed-bean-name>
+		<managed-bean-class>modelo.bean.CreateQuestionsBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<navigation-rule>
-		<display-name>Login.xhtml</display-name>
-		<from-view-id>/Login.xhtml</from-view-id>
+		<display-name>Menu.xhtml</display-name>
+		<from-view-id>/Menu.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>ok</from-outcome>
-			<to-view-id>/Hola.xhtml</to-view-id>
+			<from-outcome>create</from-outcome>
+			<to-view-id>/CreateQuestions.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-		<display-name>Login.xhtml</display-name>
-		<from-view-id>/Login.xhtml</from-view-id>
+		<display-name>Menu.xhtml</display-name>
+		<from-view-id>/Menu.xhtml</from-view-id>
 		<navigation-case>
-			<from-outcome>error</from-outcome>
-			<to-view-id>/Pirata.xhtml</to-view-id>
+			<from-outcome>query</from-outcome>
+			<to-view-id>/QueryQuestions.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
 	
