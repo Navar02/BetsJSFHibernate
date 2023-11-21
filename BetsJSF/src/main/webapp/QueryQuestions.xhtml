@@ -10,13 +10,21 @@ xmlns:p="http://primefaces.org/ui">
 
 		<h:body>
 		<h:form>
-			 	<h5>Event Date</h5>
-			 	<br> </br>
-			 	<td>
+			<div id="main" style="display: flex;">
+			 	<div style="width: 30%;">
+			 		<h4 align="left"><link>Event Date</link></h4>
 			 		<p:calendar id="fecha" value="#{login.fecha}"
 							navigator="false" mode="inline">
 			 		</p:calendar>
-			 	</td>	
+			 	</div>
+			 	<div style="width: 70%; text-align: right;">
+			 		<h4 align="center">Events:</h4>
+			 		<div align="center">
+			 		<select>
+			 		</select>
+			 		</div>
+			 	</div>
+			 </div>		
 		</h:form>		
 		</h:body>
 	</f:view>
