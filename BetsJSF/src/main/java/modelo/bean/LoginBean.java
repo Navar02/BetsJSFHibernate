@@ -48,10 +48,101 @@ public class LoginBean {
 			FacesContext.getCurrentInstance().addMessage(null, 
 					 new FacesMessage("Error: Acceso incorrecto al administrador"));
 			 return null;
+		}else if(!passValida()){
+			FacesContext.getCurrentInstance().addMessage(null, 
+					 new FacesMessage("Error: La contraseña debe tener una letra"
+					 		+ " mayuscula otra minuscula, un número,"
+					 		+ "un caracter especial y debe tener entre 6 y 20 carateres."));
+			 return null;
 		}else {
 			setTipo("user");
 			return "user";
 		}
 		
 	}
+	
+	public boolean passValida() {
+		// combrobar q la longitd esta enre 6 y 20
+        if (!((password.length() >= 6)
+              && (password.length() <= 20))) {
+            return false;
+        }
+ 
+        // comprobamos q no tenga ningun espacio
+        if (password.contains(" ")) {
+            return false;
+        }
+        if (true) {
+            int count = 0;
+ 
+            // check digits from 0 to 9
+            for (int i = 0; i <= 9; i++) {
+ 
+                // to convert int to string
+                String str1 = Integer.toString(i);
+ 
+                if (password.contains(str1)) {
+                    count = 1;
+                }
+            }
+            if (count == 0) {
+                return false;
+            }
+        }
+        // caracteres especiales
+        if (!(password.contains("@") || password.contains("#")
+              || password.contains("!") || password.contains("~")
+              || password.contains("$") || password.contains("%")
+              || password.contains("^") || password.contains("&")
+              || password.contains("*") || password.contains("(")
+              || password.contains(")") || password.contains("-")
+              || password.contains("+") || password.contains("/")
+              || password.contains(":") || password.contains(".")
+              || password.contains(", ") || password.contains("<")
+              || password.contains(">") || password.contains("?")
+              || password.contains("|"))) {
+            return false;
+        }
+ 
+        if (true) {
+            int count = 0;
+ 
+            // comprobando mayusculas
+            for (int i = 65; i <= 90; i++) {
+ 
+                // type casting
+                char c = (char)i;
+ 
+                String str1 = Character.toString(c);
+                if (password.contains(str1)) {
+                    count = 1;
+                }
+            }
+            if (count == 0) {
+                return false;
+            }
+        }
+ 
+        if (true) {
+            int count = 0;
+ 
+            // comprobando minusculas
+            for (int i = 97; i <= 122; i++) {
+ 
+                // type casting
+                char c = (char)i;
+                String str1 = Character.toString(c);
+ 
+                if (password.contains(str1)) {
+                    count = 1;
+                }
+            }
+            if (count == 0) {
+                return false;
+            }
+        }
+ 
+        // if all conditions fails
+        return true;
+    }
 }

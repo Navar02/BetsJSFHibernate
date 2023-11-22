@@ -20,7 +20,7 @@
 	<tr>
 	<td>Contraseña:</td>
 	<td><h:inputSecret id="password" value="#{login.password}">
-		<f:validateLength minimum="3" max="10" ></f:validateLength>
+		<f:validateLength minimum="6" maximum="20" ></f:validateLength>
 		<f:ajax execute="password" render="mensajes"/>
 	</h:inputSecret></td>
 	</tr>
