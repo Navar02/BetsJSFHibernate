@@ -3,10 +3,6 @@ package modelo.bean;
 import java.util.Date;
 import java.util.List;
 
-import businessLogic.BLFacade;
-import businessLogic.BLFacadeImplementation;
-import domain.Event;
-
 public class QueryQuestionBean {
 	public Date dateOE;
 	public List<Event> listEv;
