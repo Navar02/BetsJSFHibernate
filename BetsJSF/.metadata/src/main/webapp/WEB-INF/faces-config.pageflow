@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf17002346222130" configfile="/BetsJSF/src/main/webapp/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="Menu.xhtml" x="238" y="309" id="pf17002348093411" outlinks="pf17002348093412 pf17002348093413" path="/Menu.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="CreateQuestions.xhtml" x="500" y="180" id="pf17002348093414" inlinks="pf17002348093412" path="/CreateQuestions.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="QueryQuestions.xhtml" x="504" y="408" id="pf17002348093425" inlinks="pf17002348093413" path="/QueryQuestions.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="Menu.xhtml" x="338" y="370" id="pf17002348093411" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" outlinks="pf17002348093412 pf17002348093413" inlinks="pf17006490681640 pf17006490681641" path="/Menu.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="CreateQuestions.xhtml" x="554" y="178" id="pf17002348093414" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf17002348093412" path="/CreateQuestions.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="QueryQuestions.xhtml" x="554" y="562" id="pf17002348093425" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf17002348093413" path="/QueryQuestions.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="Login.xhtml" x="122" y="370" id="pf17006490681642" referenceLink="//@navigationRule.3/@fromViewId|" outlinks="pf17006490681640 pf17006490681641" path="/Login.xhtml"/>
   <links id="pf17002348093412" target="pf17002348093414" source="pf17002348093411" outcome="create"/>
   <links id="pf17002348093413" target="pf17002348093425" source="pf17002348093411" outcome="query"/>
+  <links id="pf17006490681640" target="pf17002348093411" source="pf17006490681642" outcome="admin"/>
+  <links id="pf17006490681641" target="pf17002348093411" source="pf17006490681642" outcome="user"/>
 </pageflow:Pageflow>
