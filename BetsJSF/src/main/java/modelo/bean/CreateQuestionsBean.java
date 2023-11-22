@@ -8,15 +8,15 @@ import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
 import org.primefaces.event.SelectEvent;
-//import org.w3c.dom.events.Event;
+import domain.Event;
 
 public class CreateQuestionsBean {
 	//Atributos necesarios para para crear/almacenar la interfaz grafica createQuestions
 	private Date fecha;
-	private String evento;
+	private Event evento;
 	private String pregunta;
 	private Integer apuestaMinima;
-	private static List<String> eventos=new ArrayList<String>();
+	private static List<Event> eventos=new ArrayList<String>();
 	
 	public CreateQuestionsBean() {
 		 eventos.add(new String("estudiante"));
