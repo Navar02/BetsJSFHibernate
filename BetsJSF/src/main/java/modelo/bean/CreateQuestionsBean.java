@@ -60,6 +60,7 @@ public class CreateQuestionsBean {
 		 new FacesMessage("Fecha escogida: "+event.getObject()));
 	}
 	
+	
 	public String comprobar() {
 		//no elegido fecha
 		if (this.getFecha()==null){
