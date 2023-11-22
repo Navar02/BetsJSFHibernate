@@ -1,23 +1,61 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" 
-xmlns:ui="http://java.sun.com/jsf/facelets" 
-xmlns:h="http://java.sun.com/jsf/html" 
-xmlns:f="http://java.sun.com/jsf/core"
-xmlns:p="http://primefaces.org/ui">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <f:view>
-		<h:head><title>aplicacion Bets</title></h:head>
+	<h:head>
+		<title>aplicacion Bets</title>
+		<style>
+th {
+	border: 1px solid rgb(190, 190, 190);
+	padding: 10px 20px;
+}
 
-		<h:body>
+table {
+	border-collapse: collapse;
+	border: 2px solid rgb(200, 200, 200);
+	letter-spacing: 1px;
+	font-size: 0.8rem;
+}
+</style>
+	</h:head>
+
+	<h:body>
 		<h:form>
-			 	<h5>Event Date</h5>
-			 	<br> </br>
-			 	<td>
-			 		<p:calendar id="fecha" value="#{login.fecha}"
-							navigator="false" mode="inline">
-			 		</p:calendar>
-			 	</td>	
-		</h:form>		
-		</h:body>
-	</f:view>
+			<div id="main" style="display: flex;">
+				<div style="width: 30%;">
+					<h4 align="left">
+						<link>Event Date</link>
+					</h4>
+					<p:calendar id="fecha" value="#{login.fecha}" navigator="false"
+						mode="inline">
+					</p:calendar>
+				</div>
+				<div style="width: 70%; text-align: right;">
+					<h4 align="center">Events:</h4>
+					<div align="center">
+							<td><p:dataTable id="tablaEventos">
+
+									<p:column headerText="Número de Evento"></p:column>
+									<p:column headerText="Evento"></p:column>
+								</p:dataTable> <h:messages id="mensajeEvento" style="color:blue" /></td>
+					</div>
+				</div>
+			</div>
+			<div>
+			<h4 align="left">
+						<link>Questions</link>
+					</h4>
+			<td><p:dataTable id="tablaPreguntas">
+
+									<p:column headerText="Número de Question"></p:column>
+									<p:column headerText="Question"></p:column>
+								</p:dataTable> <h:messages id="mensajeEvento" style="color:blue" /></td>
+			</div>
+		</h:form>
+	</h:body>
+</f:view>
 </html>
