@@ -1,7 +1,12 @@
 package modelo.bean;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import businessLogic.BLFacade;
+import businessLogic.BLFacadeImplementation;
+import domain.Event;
 
 public class QueryQuestionBean {
 	public Date dateOE;
@@ -20,7 +25,7 @@ public class QueryQuestionBean {
 	}
 	
 	public List<Event> getEvents(Date dateOE){
-		listEv=bl.getEvents(dateOE);
+		listEv=new ArrayList<Event>(bl.getEvents(dateOE));
 		return listEv;
 	}
 }
