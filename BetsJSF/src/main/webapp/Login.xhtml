@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<!--xmlns:p="http://primefaces.org/ui"-->
+<f:view>
+<h:head><title>Login</title></h:head>
+
+<h:body>
+<h:form>
+<h3>LOGIN </h3>
+<table>
+	<tr>
+	<td>Nombre de Usuario: </td>
+	<td><h:inputText id="nombre" value="#{login.nombre}">
+	</h:inputText></td>
+	</tr>
+	<tr>
+	<td>Contraseña:</td>
+	<td><h:inputSecret id="password" value="#{login.password}">
+		<f:validateLength minimum="3" max="10" ></f:validateLength>
+		<f:ajax execute="password" render="mensajes"/>
+	</h:inputSecret></td>
+	</tr>
+	<h:messages id="mensajes" style="color:blue"/>
+</table>
+<p>
+<h:commandButton value="Aceptar" action="#{login.comprobar}"/>
+</p>
+</h:form>
+</h:body>
+</f:view>
+</html>
