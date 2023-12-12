@@ -34,5 +34,15 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="bets.jar"/>
+	<classpathentry kind="lib" path="lib/hiber/jpa/hibernate-jpa-2.0-api-1.0.0.Final.jar"/>
+	<classpathentry kind="lib" path="lib/hiber/required/antlr-2.7.6.jar"/>
+	<classpathentry kind="lib" path="lib/hiber/required/commons-collections-3.1.jar"/>
+	<classpathentry kind="lib" path="lib/hiber/required/dom4j-2.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/hiber/required/javassist-3.26.0-GA.jar"/>
+	<classpathentry kind="lib" path="lib/hiber/required/jta-1.1.jar"/>
+	<classpathentry kind="lib" path="lib/hiber/required/slf4j-api-1.6.1.jar"/>
+	<classpathentry kind="lib" path="lib/hiber/hibernate3.jar"/>
+	<classpathentry kind="lib" path="lib/hiber/log4j-1.2.14.jar"/>
+	<classpathentry kind="lib" path="lib/hiber/slf4j-nop-1.6.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
