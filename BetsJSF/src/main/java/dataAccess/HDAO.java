@@ -14,7 +14,10 @@ import exceptions.QuestionAlreadyExist;
 
 public class HDAO {
 	private static final SessionFactory sessionFactory = buildSessionFactory();
-
+	
+	public HDAO() {
+		
+	}
 	private static SessionFactory buildSessionFactory() {
 		try {
 			return new Configuration().configure("../hibernate.cfg.xml").buildSessionFactory();
