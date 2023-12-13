@@ -12,5 +12,7 @@
   <property name="hibernate.connection.autocommit">false</property>
   <property name="hibernate.current_session_context_class">thread</property>
   <property name="hibernate.hbm2ddl.auto">update</property>
+  <mapping class="domain.Event"/>
+  <mapping class="domain.Question"/>
  </session-factory>
 </hibernate-configuration>
