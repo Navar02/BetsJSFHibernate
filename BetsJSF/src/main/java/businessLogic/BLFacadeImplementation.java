@@ -2,24 +2,31 @@ package businessLogic;
 import java.util.Date;
 import java.util.ResourceBundle;
 import java.util.Vector;
+
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
 import configuration.ConfigXML;
 import dataAccess.DataAccessInterface;
+import dataAccess.HDAO;
 import domain.Question;
 import domain.User;
 import domain.Event;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
+import modelo.HibernateUtil;
 
 /**
  * It implements the business logic as a web service.
  */
 public class BLFacadeImplementation  implements BLFacade {
 //	DataAccessInterface dbManager;
-
+	HDAO newDB;
 	public BLFacadeImplementation()  {		
 		//System.out.println("Creating BLFacadeImplementation instance");
 		//ConfigXML c=ConfigXML.getInstance();
-		
+		SessionFactory s=HibernateUtil.getSessionFactory();
+		newDB=new HDAO(s);
 		/*if (c.getDataBaseOpenMode().equals("initialize")) {
 			
 		    dbManager=new DataAccessInterface(new ObjectDbDAOManager());
@@ -27,22 +34,18 @@ public class BLFacadeImplementation  implements BLFacade {
 			dbManager.close();
 			}
 		*/
+		
 	}
 	
-    public BLFacadeImplementation()  {
-		
-//		System.out.println("Creating BLFacadeImplementation instance with DataAccess parameter");
-//		ConfigXML c=ConfigXML.getInstance();
-//		
-//		if (c.getDataBaseOpenMode().equals("initialize")) {
-//			da.emptyDatabase();
-//			da.open();
-//			da.initializeDB();
-//			da.close();
-//
-//		}
-//		dbManager=da;		
-	}
+	/*
+	 * public BLFacadeImplementation() {
+	 * 
+	 * // System.out.
+	 * println("Creating BLFacadeImplementation instance with DataAccess parameter"
+	 * ); // ConfigXML c=ConfigXML.getInstance(); // // if
+	 * (c.getDataBaseOpenMode().equals("initialize")) { // da.emptyDatabase(); //
+	 * da.open(); // da.initializeDB(); // da.close(); // // } // dbManager=da; }
+	 */
 	
 
 	/**

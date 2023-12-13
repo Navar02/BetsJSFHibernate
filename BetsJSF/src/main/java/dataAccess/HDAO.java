@@ -13,23 +13,21 @@ import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
 
 public class HDAO {
-	private static final SessionFactory sessionFactory = buildSessionFactory();
+	private static SessionFactory sessionFactory ;
 	
-	public HDAO() {
-		
+	public HDAO(SessionFactory sessionFactory) {
+		this.sessionFactory=sessionFactory;
 	}
-	private static SessionFactory buildSessionFactory() {
-		try {
-			return new Configuration().configure("../hibernate.cfg.xml").buildSessionFactory();
-		} catch (Throwable ex) {
-			System.err.println("Fallo creando el SessionFactory." + ex);
-			throw new ExceptionInInitializerError(ex);
-		}
-	}
+	/*
+	 * private static SessionFactory buildSessionFactory() { try { return new
+	 * Configuration().configure("../hibernate.cfg.xml").buildSessionFactory(); }
+	 * catch (Throwable ex) { System.err.println("Fallo creando el SessionFactory."
+	 * + ex); throw new ExceptionInInitializerError(ex); } }
+	 */
 
-	public static SessionFactory getSessionFactory() {
-		return sessionFactory;
-	}
+	/*
+	 * public static SessionFactory getSessionFactory() { return sessionFactory; }
+	 */
 
 	/**
 	 * This method creates a question for an event, with a question text and the
@@ -43,9 +41,8 @@ public class HDAO {
 	 * @throws QuestionAlreadyExist if the same question already exists for the
 	 *                              event
 	 */
-	public Question createQuestion(Event event, String question, float betMinimum)
-			throws EventFinished, QuestionAlreadyExist {
-
+	public Question createQuestion(Event event, String question, float betMinimum) throws EventFinished, QuestionAlreadyExist {
+		
 	}
 
 	/**
