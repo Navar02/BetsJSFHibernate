@@ -9,6 +9,7 @@ import java.util.Date;
 
 //import domain.Booking;
 import domain.Question;
+import domain.User;
 import domain.Event;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
@@ -54,6 +55,12 @@ public interface BLFacade  {
 	 * It is invoked only when the option "initialize" is declared in the tag dataBaseOpenMode of resources/config.xml file
 	 */	
 	public void initializeBD();
+	
+	public User addUsuario(String Usuario, String password);
+	
+	public User getUser(String Usuario);
+	
+	public boolean canLogIn(String Usuario, String password);
 
 	
 }

@@ -5,6 +5,7 @@ import java.util.Vector;
 import configuration.ConfigXML;
 import dataAccess.DataAccessInterface;
 import domain.Question;
+import domain.User;
 import domain.Event;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
@@ -118,6 +119,24 @@ public class BLFacadeImplementation  implements BLFacade {
 			/*
 			 * dbManager.open(); dbManager.initializeDB(); dbManager.close();
 			 */
+	}
+
+	
+	public User addUsuario(String Usuario, String password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+	public User getUser(String Usuario) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
+	public boolean canLogIn(String Usuario, String password) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
