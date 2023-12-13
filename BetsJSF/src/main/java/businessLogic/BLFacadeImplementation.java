@@ -13,11 +13,11 @@ import exceptions.QuestionAlreadyExist;
  * It implements the business logic as a web service.
  */
 public class BLFacadeImplementation  implements BLFacade {
-	DataAccessInterface dbManager;
+//	DataAccessInterface dbManager;
 
 	public BLFacadeImplementation()  {		
-		System.out.println("Creating BLFacadeImplementation instance");
-		ConfigXML c=ConfigXML.getInstance();
+		//System.out.println("Creating BLFacadeImplementation instance");
+		//ConfigXML c=ConfigXML.getInstance();
 		
 		/*if (c.getDataBaseOpenMode().equals("initialize")) {
 			
@@ -28,19 +28,19 @@ public class BLFacadeImplementation  implements BLFacade {
 		*/
 	}
 	
-    public BLFacadeImplementation(DataAccessInterface da)  {
+    public BLFacadeImplementation()  {
 		
-		System.out.println("Creating BLFacadeImplementation instance with DataAccess parameter");
-		ConfigXML c=ConfigXML.getInstance();
-		
-		if (c.getDataBaseOpenMode().equals("initialize")) {
-			da.emptyDatabase();
-			da.open();
-			da.initializeDB();
-			da.close();
-
-		}
-		dbManager=da;		
+//		System.out.println("Creating BLFacadeImplementation instance with DataAccess parameter");
+//		ConfigXML c=ConfigXML.getInstance();
+//		
+//		if (c.getDataBaseOpenMode().equals("initialize")) {
+//			da.emptyDatabase();
+//			da.open();
+//			da.initializeDB();
+//			da.close();
+//
+//		}
+//		dbManager=da;		
 	}
 	
 
@@ -56,20 +56,21 @@ public class BLFacadeImplementation  implements BLFacade {
 	 */
    public Question createQuestion(Event event, String question, float betMinimum) throws EventFinished, QuestionAlreadyExist{
 	   
-	    //The minimum bed must be greater than 0
-		dbManager.open();
-		Question qry=null;
-		
-	    
-		if(new Date().compareTo(event.getEventDate())>0)
-			throw new EventFinished(ResourceBundle.getBundle("Etiquetas").getString("ErrorEventHasFinished"));
-				
-		
-		 qry=dbManager.createQuestion(event,question,betMinimum);		
-
-		dbManager.close();
-		
-		return qry;
+		/*
+		 * //The minimum bed must be greater than 0 dbManager.open(); Question qry=null;
+		 * 
+		 * 
+		 * if(new Date().compareTo(event.getEventDate())>0) throw new
+		 * EventFinished(ResourceBundle.getBundle("Etiquetas").getString(
+		 * "ErrorEventHasFinished"));
+		 * 
+		 * 
+		 * qry=dbManager.createQuestion(event,question,betMinimum);
+		 * 
+		 * dbManager.close();
+		 * 
+		 * return qry;
+		 */
    };
 	
 	/**
@@ -79,10 +80,10 @@ public class BLFacadeImplementation  implements BLFacade {
 	 * @return collection of events
 	 */
 	public Vector<Event> getEvents(Date date)  {
-		dbManager.open();
-		Vector<Event>  events=dbManager.getEvents(date);
-		dbManager.close();
-		return events;
+		/*
+		 * dbManager.open(); Vector<Event> events=dbManager.getEvents(date);
+		 * dbManager.close(); return events;
+		 */
 	}
 
     
@@ -93,10 +94,10 @@ public class BLFacadeImplementation  implements BLFacade {
 	 * @return collection of dates
 	 */
 	public Vector<Date> getEventsMonth(Date date) {
-		dbManager.open();
-		Vector<Date>  dates=dbManager.getEventsMonth(date);
-		dbManager.close();
-		return dates;
+		/*
+		 * dbManager.open(); Vector<Date> dates=dbManager.getEventsMonth(date);
+		 * dbManager.close(); return dates;
+		 */
 	}
 	
 	
@@ -104,7 +105,7 @@ public class BLFacadeImplementation  implements BLFacade {
 		//DataAccess dB4oManager=new DataAccess(false);
 
 		//dB4oManager.close();
-		dbManager.close();
+//		dbManager.close();
 
 
 	}
@@ -114,9 +115,9 @@ public class BLFacadeImplementation  implements BLFacade {
 	 * It is invoked only when the option "initialize" is declared in the tag dataBaseOpenMode of resources/config.xml file
 	 */	
 	 public void initializeBD(){
-    	dbManager.open();
-		dbManager.initializeDB();
-		dbManager.close();
+			/*
+			 * dbManager.open(); dbManager.initializeDB(); dbManager.close();
+			 */
 	}
 
 }
