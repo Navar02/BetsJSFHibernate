@@ -2,14 +2,18 @@ package domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Vector;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 
 
@@ -22,14 +26,15 @@ public class Event implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	@Id @GeneratedValue
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer eventNumber;
-	private String description; 
+	private String description;
+	@Column(nullable = false)
 	private Date eventDate;
-	@OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
-	private Vector<Question> questions=new Vector<Question>();
+	@OneToMany(targetEntity=Question.class,fetch=FetchType.EAGER, mappedBy="event",cascade= {CascadeType.PERSIST,CascadeType.REFRESH})
+	private List<Question> questions=new Vector<Question>();
 
-	public Vector<Question> getQuestions() {
+	public List<Question> getQuestions() {
 		return questions;
 	}
 

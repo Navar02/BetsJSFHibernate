@@ -7,14 +7,16 @@ import javax.persistence.*;
 
 @SuppressWarnings("serial")
 @Entity
+@Table(name="QUESTION")
 public class Question implements Serializable {
 	
 	@Id 
-	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.IDENTITY) 
 	private Integer questionNumber;
 	private String question; 
 	private float betMinimum;
-	private String result;  
+	private String result;
+	@ManyToOne(targetEntity=Event.class, fetch=FetchType.EAGER, cascade= {CascadeType.PERSIST,CascadeType.REFRESH})
 	private Event event;
 
 	public Question(){
