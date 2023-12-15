@@ -182,7 +182,41 @@ public class HDAO implements DataAccessInterface{
 
 	}
 
-	
+	@Override
+	public void open() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void close() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void emptyDatabase() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Vector<Event> getEvents(Date date) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Vector<Date> getEventsMonth(Date date) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean existQuestion(Event event, String question) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 	/**
 	 * método para añadir un NUEVO usuario a la base de datos
@@ -220,39 +254,5 @@ public class HDAO implements DataAccessInterface{
 		return false;
 	}
 
-	@Override
-	public void open() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void close() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void emptyDatabase() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Vector<Event> getEvents(Date date) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Vector<Date> getEventsMonth(Date date) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean existQuestion(Event event, String question) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+	
 }
