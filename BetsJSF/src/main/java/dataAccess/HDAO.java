@@ -18,12 +18,15 @@ import domain.Question;
 import domain.User;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
+import modelo.HibernateUtil;
 
 public class HDAO implements DataAccessInterface{
 	private static SessionFactory sessionFactory ;
 	
-	public HDAO(SessionFactory sessionFactory) {
-		this.sessionFactory=sessionFactory;
+	public HDAO() {
+		SessionFactory s=HibernateUtil.getSessionFactory();
+		this.sessionFactory=s;
+		initializeDB();
 	}
 	
 	/**
@@ -32,6 +35,7 @@ public class HDAO implements DataAccessInterface{
 	 */	
 	public void initializeDB(){
 		Session sess=sessionFactory.getCurrentSession();
+		System.out.println(sess);
 		sess.beginTransaction();
 		try {
 
@@ -181,7 +185,7 @@ public class HDAO implements DataAccessInterface{
 		return e;
 
 	}
-
+	
 	@Override
 	public void open() {
 		// TODO Auto-generated method stub
