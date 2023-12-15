@@ -41,8 +41,9 @@ public interface DataAccessInterface {
 	 * @param betMinimum minimum quantity of the bet
 	 * @return the created question, or null, or an exception
 	 * @throws QuestionAlreadyExist if the same question already exists for the event
+	 * @throws Exception 
 	 */
-	Question createQuestion(Event event, String question, float betMinimum) throws QuestionAlreadyExist;
+	Question createQuestion(Event event, String question, float betMinimum) throws QuestionAlreadyExist, Exception;
 
 	/**
 	 * This method retrieves from the database the events of a given date 

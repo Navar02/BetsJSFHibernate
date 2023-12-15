@@ -19,7 +19,7 @@ import domain.User;
 import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
 
-public class HDAO {
+public class HDAO implements DataAccessInterface{
 	private static SessionFactory sessionFactory ;
 	
 	public HDAO(SessionFactory sessionFactory) {
@@ -182,30 +182,7 @@ public class HDAO {
 
 	}
 
-	/**
-	 * This method invokes the data access to retrieve the events of a given date
-	 * 
-	 * @param date in which events are retrieved
-	 * @return collection of events
-	 */
-	public Vector<Event> getEvents(Date date) {
-
-	}
-
-	/**
-	 * This method invokes the data access to retrieve the dates a month for which
-	 * there are events
-	 * 
-	 * @param date of the month for which days with events want to be retrieved
-	 * @return collection of dates
-	 */
-	public Vector<Date> getEventsMonth(Date date) {
-
-	}
-
-	public void close() {
-
-	}
+	
 
 	/**
 	 * método para añadir un NUEVO usuario a la base de datos
@@ -239,6 +216,42 @@ public class HDAO {
 	 * @return
 	 */
 	public boolean canLogIn(String Usuario, String password) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void open() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void close() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void emptyDatabase() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Vector<Event> getEvents(Date date) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Vector<Date> getEventsMonth(Date date) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean existQuestion(Event event, String question) {
 		// TODO Auto-generated method stub
 		return false;
 	}
