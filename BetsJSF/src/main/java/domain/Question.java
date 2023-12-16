@@ -9,20 +9,17 @@ import javax.xml.bind.annotation.XmlAccessType;
 
 
 
-@SuppressWarnings("serial")
-@XmlAccessorType(XmlAccessType.FIELD)
+
 @Entity
-@Table(name="QUESTION")
 public class Question implements Serializable {
 	
 	@Id 
-	@XmlJavaTypeAdapter(IntegerAdapter.class)
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue
 	private Integer questionNumber;
 	private String question; 
 	private float betMinimum;
 	private String result;
-	@ManyToOne(targetEntity=Event.class, fetch=FetchType.EAGER, cascade= {CascadeType.PERSIST,CascadeType.REFRESH})
+	@ManyToOne(targetEntity=Event.class, fetch=FetchType.EAGER)
 	private Event event;
 
 	public Question(){

@@ -6,32 +6,20 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlID;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 
-
-
-
-@XmlAccessorType(XmlAccessType.FIELD)
 @Entity
-@Table(name="EVENT")
 public class Event implements Serializable {
 	
-	/**
-	 * 
-	 */
-	@XmlID
-	@XmlJavaTypeAdapter(IntegerAdapter.class)
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	private static final long serialVersionUID =1L;
+	
+	@Id @GeneratedValue
 	private Integer eventNumber;
 	private String description;
 	@Column(nullable = false)
 	private Date eventDate;
-	@OneToMany(targetEntity=Question.class,fetch=FetchType.LAZY, mappedBy="event",cascade= CascadeType.PERSIST)
+	@OneToMany(targetEntity=Question.class,mappedBy="event", fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
 	private List<Question> questions=new ArrayList<Question>();
 
 	public List<Question> getQuestions() {
