@@ -7,41 +7,53 @@
 	xmlns:p="http://primefaces.org/ui">
 <f:view>
 	<h:head>
-		<title>aplicacion Bets</title>
+		<title>Aplicacion Bets</title>
 	</h:head>
 
 	<h:body>
-	<h1>Query Question Interface</h1>
+		<h1>Query Question Interface</h1>
 		<h:form>
 			<div id="main" style="display: flex;">
 				<div style="width: 30%;">
 					<h4 align="left">
 						<link>Event Date</link>
 					</h4>
-					<p:calendar id="fecha"  navigator="false"
-						mode="inline">
+					<p:calendar id="fecha" navigator="false" mode="inline">
+						<p:ajax event="dateSelect"
+							listener="#{queryQuestion.onDateSelect}"
+							update=":form2:mensajes,:form1:tablaEventos"></p:ajax>
 					</p:calendar>
 				</div>
 				<div style="width: 70%; text-align: right;">
 					<h4 align="center">Events:</h4>
 					<div align="center">
-							<td><p:dataTable id="tablaEventos">
-
-									<p:column headerText="Número de Evento"></p:column>
-									<p:column headerText="Evento"></p:column>
-								</p:dataTable> <h:messages id="mensajeEvento" style="color:blue" /></td>
+						<td><p:dataTable id="tablaEventos"
+								value="#{queryQuestion.events}" var="item"
+								selectionMode="single" selection="#{queryQuestion.evento}"
+								rowKey="#{item.eventNumber}">
+								<p:ajax event="rowSelect"
+									listener="#{queryQuestion.onRowSelect}"
+									update=":form2:tablaPreguntas, :form1:mensajeEvento"></p:ajax>
+								<p:column headerText="Event Number">#{item.eventNumber}</p:column>
+								<p:column headerText="Event">#{item.description}</p:column>
+							</p:dataTable></td>
+						<td><h:messages id="mensajeEvento" style="color:cian" /></td>
 					</div>
 				</div>
 			</div>
 			<div>
-			<h4 align="left">
-						<link>Questions</link>
-					</h4>
-			<td><p:dataTable id="tablaPreguntas">
+				<h4 align="left">
+					<link>Questions</link>
+				</h4>
+				<td><p:dataTable id="tablaPreguntas"
+						value="#{queryQuestion.questions}" var="item"
+						selectionMode="single" selection="#{queryQuestion.pregunta}"
+						rowKey="#{item.questionNumber}">
 
-									<p:column headerText="Número de Question"></p:column>
-									<p:column headerText="Question"></p:column>
-								</p:dataTable> <h:messages id="mensajeEvento" style="color:blue" /></td>
+						<p:column headerText="Question Number">#{item.questionNumber}</p:column>
+						<p:column headerText="Question">#{item.question}</p:column>
+					</p:dataTable></td>
+				<td><h:messages id="mensajeEvento" style="color:cian" /></td>
 			</div>
 		</h:form>
 	</h:body>
