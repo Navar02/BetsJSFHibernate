@@ -3,15 +3,21 @@ package domain;
 import java.io.*;
 
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import javax.xml.bind.annotation.XmlAccessType;
+
 
 
 @SuppressWarnings("serial")
+@XmlAccessorType(XmlAccessType.FIELD)
 @Entity
 @Table(name="QUESTION")
 public class Question implements Serializable {
 	
 	@Id 
-	@GeneratedValue(strategy=GenerationType.IDENTITY) 
+	@XmlJavaTypeAdapter(IntegerAdapter.class)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer questionNumber;
 	private String question; 
 	private float betMinimum;

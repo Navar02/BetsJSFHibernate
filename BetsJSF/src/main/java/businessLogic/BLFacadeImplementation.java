@@ -78,11 +78,8 @@ public class BLFacadeImplementation  implements BLFacade {
 	 * @return collection of dates
 	 */
 	public Vector<Date> getEventsMonth(Date date) {
-		return null;
-		/*
-		 * dbManager.open(); Vector<Date> dates=dbManager.getEventsMonth(date);
-		 * dbManager.close(); return dates;
-		 */
+		Vector<Date> dates = newDB.getEventsMonth(date);
+		return dates;
 	}
 
 
@@ -100,8 +97,10 @@ public class BLFacadeImplementation  implements BLFacade {
 	 * It is invoked only when the option "initialize" is declared in the tag dataBaseOpenMode of resources/config.xml file
 	 */	
 	public void initializeBD(){
+		newDB.initializeDB(); 
 		/*
-		 * dbManager.open(); dbManager.initializeDB(); dbManager.close();
+		 * dbManager.open(); 
+		 * dbManager.close();
 		 */
 	}
 

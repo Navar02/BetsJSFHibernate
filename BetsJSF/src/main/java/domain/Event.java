@@ -1,44 +1,44 @@
 package domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Vector;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlID;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 
 
 
 
+
+@XmlAccessorType(XmlAccessType.FIELD)
 @Entity
+@Table(name="EVENT")
 public class Event implements Serializable {
 	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+	@XmlID
+	@XmlJavaTypeAdapter(IntegerAdapter.class)
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer eventNumber;
 	private String description;
 	@Column(nullable = false)
 	private Date eventDate;
-	@OneToMany(targetEntity=Question.class,fetch=FetchType.EAGER, mappedBy="event",cascade= {CascadeType.PERSIST,CascadeType.REFRESH})
-	private List<Question> questions=new Vector<Question>();
+	@OneToMany(targetEntity=Question.class,fetch=FetchType.LAZY, mappedBy="event",cascade= CascadeType.PERSIST)
+	private List<Question> questions=new ArrayList<Question>();
 
 	public List<Question> getQuestions() {
 		return questions;
 	}
 
-	public void setQuestions(Vector<Question> questions) {
+	public void setQuestions(List<Question> questions) {
 		this.questions = questions;
 	}
 

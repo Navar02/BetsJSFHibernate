@@ -14,13 +14,77 @@ import domain.Question;
 
 public class QueryQuestionBean {
 	public Date dateOE;
-	public List<Event> listEv;
-	public List<domain.Question> listQ;
 	public String event;
 	public String Question;
 	public List<Event> events=new ArrayList<Event>();
 	public List<Question> questions=new ArrayList<Question>();
 	public BLFacade bl=new BLFacadeImplementation();
+	Event evento;
+	Question pregunta;
+	
+	public Date getDateOE() {
+		return dateOE;
+	}
+
+	public void setDateOE(Date dateOE) {
+		this.dateOE = dateOE;
+	}
+
+	public String getEvent() {
+		return event;
+	}
+
+	public void setEvent(String event) {
+		this.event = event;
+	}
+
+	public String getQuestion() {
+		return Question;
+	}
+
+	public void setQuestion(String question) {
+		Question = question;
+	}
+
+	public List<Event> getEvents() {
+		return events;
+	}
+
+	public void setEvents(List<Event> events) {
+		this.events = events;
+	}
+
+	public List<Question> getQuestions() {
+		return questions;
+	}
+
+	public void setQuestions(List<Question> questions) {
+		this.questions = questions;
+	}
+
+	public BLFacade getBl() {
+		return bl;
+	}
+
+	public void setBl(BLFacade bl) {
+		this.bl = bl;
+	}
+
+	public Event getEvento() {
+		return evento;
+	}
+
+	public void setEvento(Event evento) {
+		this.evento = evento;
+	}
+
+	public Question getPregunta() {
+		return pregunta;
+	}
+
+	public void setPregunta(Question pregunta) {
+		this.pregunta = pregunta;
+	}
 	
 	public Date getFecha() {
 		return dateOE;
