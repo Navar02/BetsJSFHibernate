@@ -1,7 +1,9 @@
 package dataAccess;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -20,7 +22,7 @@ import exceptions.EventFinished;
 import exceptions.QuestionAlreadyExist;
 import modelo.HibernateUtil;
 
-public class HDAO implements DataAccessInterface{
+public class HDAO {
 	private static SessionFactory sessionFactory ;
 	
 	public HDAO() {
@@ -185,42 +187,29 @@ public class HDAO implements DataAccessInterface{
 		return e;
 
 	}
-	
-	@Override
-	public void open() {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public void close() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void emptyDatabase() {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
+	@SuppressWarnings("unchecked")
 	public Vector<Event> getEvents(Date date) {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = sessionFactory.getCurrentSession();
+		session.beginTransaction();
+		List<Event> result;
+		try {
+			Query q = session.createQuery("from Event where eventDate= :fechia");
+			q.setParameter("fechia", date);
+			result = (List<Event>) q.list();
+			session.getTransaction().commit();
+		} catch (Exception ex) {
+			System.out.println("Error: " + ex.toString());
+			result = null;
+		}
+		Vector<Event> resultFinal = new Vector<Event>();
+		Iterator<Event> i = result.iterator();
+		while (i.hasNext()) {
+			resultFinal.add((Event) i.next());
+		}
+		return resultFinal;
 	}
 
-	@Override
-	public Vector<Date> getEventsMonth(Date date) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean existQuestion(Event event, String question) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
 	/**
 	 * método para añadir un NUEVO usuario a la base de datos

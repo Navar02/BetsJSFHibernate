@@ -20,34 +20,15 @@ import modelo.HibernateUtil;
  * It implements the business logic as a web service.
  */
 public class BLFacadeImplementation  implements BLFacade {
-	//	DataAccessInterface dbManager;
 	HDAO newDB;
 
 	//No hace falta llamar a sesion aqui
 	//Con llamar a los metodos de la HDAO es suficiente
 	public BLFacadeImplementation()  {		
-		//System.out.println("Creating BLFacadeImplementation instance");
-		//ConfigXML c=ConfigXML.getInstance();
 		newDB=new HDAO();
-		/*if (c.getDataBaseOpenMode().equals("initialize")) {
-
-		    dbManager=new DataAccessInterface(new ObjectDbDAOManager());
-			dbManager.initializeDB();
-			dbManager.close();
-			}
-		 */
 
 	}
 
-	/*
-	 * public BLFacadeImplementation() {
-	 * 
-	 * // System.out.
-	 * println("Creating BLFacadeImplementation instance with DataAccess parameter"
-	 * ); // ConfigXML c=ConfigXML.getInstance(); // // if
-	 * (c.getDataBaseOpenMode().equals("initialize")) { // da.emptyDatabase(); //
-	 * da.open(); // da.initializeDB(); // da.close(); // // } // dbManager=da; }
-	 */
 
 
 	/**
@@ -77,11 +58,6 @@ public class BLFacadeImplementation  implements BLFacade {
 		}
 
 		return qry;
-		/* 
-		 * dbManager.close();
-		 * 
-		 * return qry;
-		 */
 	};
 
 	/**
@@ -91,11 +67,7 @@ public class BLFacadeImplementation  implements BLFacade {
 	 * @return collection of events
 	 */
 	public Vector<Event> getEvents(Date date)  {
-		return null;
-		/*
-		 * dbManager.open(); Vector<Event> events=dbManager.getEvents(date);
-		 * dbManager.close(); return events;
-		 */
+		return newDB.getEvents(date);
 	}
 
 
