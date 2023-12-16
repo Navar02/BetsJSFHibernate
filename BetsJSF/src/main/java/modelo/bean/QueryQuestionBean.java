@@ -51,12 +51,12 @@ public class QueryQuestionBean {
 	
 	public void onRowSelect(SelectEvent eve) {
 		Event even=(Event)eve.getObject();
-		setQuestions((Event) eve.getObject());
+		setQuestions(even);
 	}
 
 	private void setQuestions(Event object) {
 
-		this.questions = questions;
+		this.questions=object.getQuestions();
 
 	}
 }
