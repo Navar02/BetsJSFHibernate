@@ -14,7 +14,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 public class Question implements Serializable {
 	
 	@Id 
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer questionNumber;
 	private String question; 
 	private float betMinimum;

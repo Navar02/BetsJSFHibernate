@@ -200,8 +200,21 @@ public class HDAO {
 	 * @return
 	 */
 	public User addUsuario(String Usuario, String password) {
-		// TODO Auto-generated method stub
-		return null;
+		User xd = getUser(Usuario);
+		if (xd == null) {
+			User u = new User(Usuario, password);
+			Session sess = sessionFactory.getCurrentSession();
+			sess.beginTransaction();
+			try {
+				sess.save(u);
+				sess.getTransaction().commit();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+			return u;
+		} else {
+			return null;
+		}
 	}
 
 	/**
@@ -211,8 +224,22 @@ public class HDAO {
 	 * @return
 	 */
 	public User getUser(String Usuario) {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = sessionFactory.getCurrentSession();
+		List<User> result;
+		try {
+			Query q = session.createQuery("from User where usuario= :name");
+			q.setParameter("name", Usuario);
+			result = (List<User>) q.list();
+			session.getTransaction().commit();
+		} catch (Exception ex) {
+			System.out.println("Error: " + ex.toString());
+			result = null;
+		}
+		if (result.size() == 0) {
+			return null;
+		} else {
+			return result.get(0);
+		}
 	}
 
 	/**
@@ -224,13 +251,41 @@ public class HDAO {
 	 * @return
 	 */
 	public boolean canLogIn(String Usuario, String password) {
-		// TODO Auto-generated method stub
-		return false;
+		User test = getUser(Usuario);
+		if (test == null) {
+			return false;
+		}
+		if (test.getPassword().equals(password)) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 	public Vector<Date> getEventsMonth(Date date) {
-		// TODO Auto-generated method stub
-		return null;
+		Session sess = sessionFactory.getCurrentSession();
+		sess.beginTransaction();
+		List<Event> result;
+		Date fechaini = UtilDate.firstDayMonth(date);
+		Date fechafina = UtilDate.lastDayMonth(date);
+		try {
+			Query q = sess.createQuery("from Event where eventDate BETWEEN :d1 and :d2");
+			q.setParameter("d1", fechaini);
+			q.setParameter("d2", fechafina);
+			result = q.list();
+			sess.getTransaction().commit();
+		} catch (Exception ex) {
+			System.out.println("Error: " + ex.toString());
+			result = null;
+		}
+		Vector<Date> fechasmes = new Vector<Date>();
+		Iterator<Event> i = result.iterator();
+		Event e;
+		while (i.hasNext()) {
+			e = (Event) i.next();
+			fechasmes.add(e.getEventDate());
+		}
+		return fechasmes;
 	}
 
 	
