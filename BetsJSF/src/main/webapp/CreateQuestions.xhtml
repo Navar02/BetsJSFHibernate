@@ -21,7 +21,7 @@
 							<p:ajax event="dateSelect" listener="#{createQuestions.onDateSelect}" update="mensajes"></p:ajax>
 					</p:calendar></td>
 					
-					<td align="center" vertical-align="top"><h:selectOneMenu id="evento" value="#{createQuestions.evento}" converter="omnifaces.SelectItemsConverter">
+							<td align="center" vertical-align="top"><h:selectOneMenu id="evento" value="#{createQuestions.evento}" converter="omnifaces.SelectItemsConverter">
 							<f:selectItems value="#{createQuestions.eventos}"/>
 							<f:ajax event="change" listener="#{createQuestions.listener}" render="mensajes"/>
 					</h:selectOneMenu></td>

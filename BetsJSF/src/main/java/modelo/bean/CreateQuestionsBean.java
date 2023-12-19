@@ -21,7 +21,7 @@ public class CreateQuestionsBean {
 	private String pregunta;
 	private Integer apuestaMinima;
 	private static List<Event> eventos=new ArrayList<Event>();
-	private BLFacade bl=new BLFacadeImplementation();
+	private static BLFacade bl=new BLFacadeImplementation();
 	
 	public CreateQuestionsBean() {
 		Vector<Event> v=bl.getEvents(fecha);
@@ -30,16 +30,33 @@ public class CreateQuestionsBean {
 		}
 	}
 	
+	public static List<Event> getEventos(Date date) {
+		List<Event>evento= new ArrayList<Event>(getBl().getEvents(date));
+		return evento;
+	}
+
+	public static void setEventos(List<Event> eventos) {
+		CreateQuestionsBean.eventos = eventos;
+	}
+
+	public static BLFacade getBl() {
+		return bl;
+	}
+
+	public void setBl(BLFacade bl) {
+		this.bl = bl;
+	}
+
 	public Date getFecha() {
 		return fecha;
 	}
 	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
-	public Event getEventos() {
+	public Event getEvento() {
 		return evento;
 	}
-	public void setEventos(Event eventos) {
+	public void setEvento(Event eventos) {
 		this.evento = eventos;
 	}
 	public String getPregunta() {
@@ -56,8 +73,11 @@ public class CreateQuestionsBean {
 	}
 	
 	public void onDateSelect(SelectEvent event) {
-		 FacesContext.getCurrentInstance().addMessage(null,
-		 new FacesMessage("Fecha escogida: "+event.getObject()));
+		/*
+		 * FacesContext.getCurrentInstance().addMessage(null, new
+		 * FacesMessage("Fecha escogida: "+event.getObject()));
+		 */
+		getEventos((Date)event.getObject());
 	}
 	
 	
@@ -68,7 +88,7 @@ public class CreateQuestionsBean {
 			return null;
 		}
 		//no elegido evento
-		if(this.getEventos()==null){
+		if(this.getEvento()==null){
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Error: Debe seleccionar un evento"));
 			return null;//return "error";
 		}
