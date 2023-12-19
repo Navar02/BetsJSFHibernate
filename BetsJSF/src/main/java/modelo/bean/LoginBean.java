@@ -6,12 +6,17 @@ import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 
+import businessLogic.BLFacade;
+import businessLogic.BLFacadeImplementation;
+
 public class LoginBean {
 	
 	private String nombre;
 	private String password;
+	private String passwords;
 	private String tipo;
 	private static List<String> tipos=new ArrayList<String>();
+	private BLFacade bl=new BLFacadeImplementation();
 	
 	public LoginBean() {
 		
@@ -29,10 +34,17 @@ public class LoginBean {
 		this.password = password;
 	}
 	
+	public String getPasswords() {
+		return passwords;
+	}
+	public void setPasswords(String passwords) {
+		this.passwords = passwords;
+	}
 	public void setTipo(String tipo) {
 		 this.tipo = tipo;
 		 System.out.println("El tipo del usuario:" + this.tipo);
 	}
+	
 	public List<String> getTipos() {
 		return tipos;
 	}
@@ -41,6 +53,29 @@ public class LoginBean {
 	}
 	
 	public String comprobar() {
+		if(!passValida()){
+			FacesContext.getCurrentInstance().addMessage(null, 
+					 new FacesMessage("Error: La contraseña debe tener una letra"
+					 		+ " mayuscula otra minuscula, un número,"
+					 		+ "un caracter especial y debe tener entre 6 y 20 carateres."));
+			 return null;
+		}else if(!password.equals(passwords)){
+			FacesContext.getCurrentInstance().addMessage(null, 
+					 new FacesMessage("Error: Las contraseñas son diferentes."));
+			return null;
+		}else if(nombre.equals(bl.getUser(nombre).getUsuario())) {
+			FacesContext.getCurrentInstance().addMessage(null, 
+					 new FacesMessage("Error: Ya existe un usuario con ese nombre."));
+			return null;
+		}else {
+			setTipo("user");
+			bl.addUsuario(nombre, password);
+			return "ok";
+		}
+		
+	}
+	
+	public String comprobar2() {
 		if(nombre.equals("admin") && password.equals("1234")) {
 			setTipo("admin");
 			return "admin";
@@ -48,18 +83,19 @@ public class LoginBean {
 			FacesContext.getCurrentInstance().addMessage(null, 
 					 new FacesMessage("Error: Acceso incorrecto al administrador"));
 			 return null;
-		}else if(!passValida()){
+		}else if(!nombre.equals(bl.getUser(nombre).getUsuario())) {
 			FacesContext.getCurrentInstance().addMessage(null, 
-					 new FacesMessage("Error: La contraseña debe tener una letra"
-					 		+ " mayuscula otra minuscula, un número,"
-					 		+ "un caracter especial y debe tener entre 6 y 20 carateres."));
-			 return null;
+					 new FacesMessage("Error: No existe un usuario con ese nombre."));
+			return null;
+		}else if(nombre.equals(bl.getUser(nombre).getUsuario()) && !password.equals(bl.getUser(nombre).getPassword())) {
+			FacesContext.getCurrentInstance().addMessage(null, 
+					 new FacesMessage("Error: Contraseña incorrecta."));
+			return null;
 		}else {
-			setTipo("user");
 			return "user";
 		}
-		
 	}
+	
 	
 	public boolean passValida() {
 		// combrobar q la longitd esta enre 6 y 20
