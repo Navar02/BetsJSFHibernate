@@ -19,7 +19,7 @@ public class Event implements Serializable {
 	private String description;
 	@Column(nullable = false)
 	private Date eventDate;
-	@OneToMany(targetEntity=Question.class,mappedBy="event", fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
+	@OneToMany(targetEntity=Question.class,mappedBy="event", fetch=FetchType.EAGER, cascade= {CascadeType.PERSIST,CascadeType.REMOVE})
 	private List<Question> questions=new ArrayList<Question>();
 
 	public List<Question> getQuestions() {

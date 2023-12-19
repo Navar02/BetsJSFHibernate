@@ -76,27 +76,16 @@ public class HDAO {
 				
 				
 				
-				Question q1;
-				Question q2;
-				Question q3;
-				Question q4;
-				Question q5;
-				Question q6;
-						
-				q1=ev1.addQuestion("Quien gana?",1);
-				q2=ev1.addQuestion("Quien mete gol?",2);
-				q3=ev11.addQuestion("Quien ganara?",1);
-				q4=ev11.addQuestion("Cuantos goles?",2);
-				q5=ev17.addQuestion("Quien va  a ganar?",1);
-				q6=ev17.addQuestion("Habra gol?",2);
 				
-				sess.save(q1);
-				sess.save(q2);
-				sess.save(q3);
-				sess.save(q4);
-				sess.save(q5);
-				sess.save(q6);
-				
+				  Question q1; Question q2; Question q3; Question q4; Question q5; Question q6;
+				  
+				  q1=ev1.addQuestion("Quien gana?",1); q2=ev1.addQuestion("Quien mete gol?",2);
+				  q3=ev11.addQuestion("Quien ganara?",1);
+				  q4=ev11.addQuestion("Cuantos goles?",2);
+				  q5=ev17.addQuestion("Quien va  a ganar?",1);
+				  q6=ev17.addQuestion("Habra gol?",2);
+				  
+				sess.save(ev1);
 				sess.save(ev1);
 				sess.save(ev2);
 				sess.save(ev3);
@@ -117,6 +106,13 @@ public class HDAO {
 				sess.save(ev18);
 				sess.save(ev19);
 				sess.save(ev20);
+				
+				sess.save(q1);
+				sess.save(q2);
+				sess.save(q3);
+				sess.save(q4);
+				sess.save(q5);
+				sess.save(q6);
 				
 				sess.getTransaction().commit();
 			}catch(Exception e){
