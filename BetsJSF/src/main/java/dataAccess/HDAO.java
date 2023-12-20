@@ -222,12 +222,12 @@ public class HDAO {
 	public User getUser(String Usuario) {
 		 Session session = sessionFactory.getCurrentSession();
 		    User user = null;
-
+		    session.beginTransaction();
 		    try {
 		        Query query = session.createQuery("from User where username = :name");
 		        query.setParameter("name", Usuario);
 		        List<User> result = query.list();
-
+		        session.getTransaction().commit();
 		        if (!result.isEmpty()) {
 		            user = result.get(0);
 		        }
