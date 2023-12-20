@@ -224,7 +224,7 @@ public class HDAO {
 		    User user = null;
 		    session.beginTransaction();
 		    try {
-		        Query query = session.createQuery("from User where username = :name");
+		        Query query = session.createQuery("from User where usuario = :name");
 		        query.setParameter("name", Usuario);
 		        List<User> result = query.list();
 		        session.getTransaction().commit();
