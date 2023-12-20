@@ -106,17 +106,20 @@ public class BLFacadeImplementation  implements BLFacade {
 
 
 	public User addUsuario(String Usuario, String password) {
-		return newDB.addUsuario(Usuario, password);
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
 	public User getUser(String Usuario) {
-		return newDB.getUser(Usuario);
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
 	public boolean canLogIn(String Usuario, String password) {
-		return newDB.canLogIn(Usuario, password);
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
