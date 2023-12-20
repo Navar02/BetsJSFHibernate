@@ -220,22 +220,23 @@ public class HDAO {
 	 * @return
 	 */
 	public User getUser(String Usuario) {
-		Session session = sessionFactory.getCurrentSession();
-		List<User> result;
-		try {
-			Query q = session.createQuery("from User where usuario= :name");
-			q.setParameter("name", Usuario);
-			result = (List<User>) q.list();
-			session.getTransaction().commit();
-		} catch (Exception ex) {
-			System.out.println("Error: " + ex.toString());
-			result = null;
-		}
-		if (result.size() == 0) {
-			return null;
-		} else {
-			return result.get(0);
-		}
+		 Session session = sessionFactory.getCurrentSession();
+		    User user = null;
+
+		    try {
+		        Query query = session.createQuery("from User where username = :name");
+		        query.setParameter("name", Usuario);
+		        List<User> result = query.list();
+
+		        if (!result.isEmpty()) {
+		            user = result.get(0);
+		        }
+
+		    } catch (Exception ex) {
+		        System.out.println("Error: " + ex.toString());
+		    }
+
+		    return user;
 	}
 
 	/**
