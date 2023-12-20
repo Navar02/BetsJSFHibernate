@@ -1,19 +1,110 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-                
+                    
+    
     
     
     <wb-module deploy-name="BetsJSF">
-                                
+                                        
+        
         
         
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
                                 
         
         
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <dependent-module archiveName="bets.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/BetsJSF/bets.jar">
+                                                
+            
+            
+            <dependency-type>uses</dependency-type>
+                                            
+        
+        
+        </dependent-module>
                         
         
-        <dependent-module archiveName="bets.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/BetsJSF/bets.jar">
+        <dependent-module archiveName="hibernate-jpa-2.0-api-1.0.0.Final.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/BetsJSF/lib/hiber/jpa/hibernate-jpa-2.0-api-1.0.0.Final.jar">
+                                    
+            
+            <dependency-type>uses</dependency-type>
+                                
+        
+        </dependent-module>
+                        
+        
+        <dependent-module archiveName="log4j-1.2.14.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/BetsJSF/lib/hiber/log4j-1.2.14.jar">
+                                    
+            
+            <dependency-type>uses</dependency-type>
+                                
+        
+        </dependent-module>
+                        
+        
+        <dependent-module archiveName="slf4j-nop-1.6.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/BetsJSF/lib/hiber/slf4j-nop-1.6.2.jar">
+                                    
+            
+            <dependency-type>uses</dependency-type>
+                                
+        
+        </dependent-module>
+                        
+        
+        <dependent-module archiveName="hibernate3.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/BetsJSF/lib/hiber/hibernate3.jar">
+                                    
+            
+            <dependency-type>uses</dependency-type>
+                                
+        
+        </dependent-module>
+                        
+        
+        <dependent-module archiveName="commons-collections-3.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/BetsJSF/lib/hiber/required/commons-collections-3.1.jar">
+                                    
+            
+            <dependency-type>uses</dependency-type>
+                                
+        
+        </dependent-module>
+                        
+        
+        <dependent-module archiveName="dom4j-2.1.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/BetsJSF/lib/hiber/required/dom4j-2.1.1.jar">
+                                    
+            
+            <dependency-type>uses</dependency-type>
+                                
+        
+        </dependent-module>
+                        
+        
+        <dependent-module archiveName="slf4j-api-1.6.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/BetsJSF/lib/hiber/required/slf4j-api-1.6.1.jar">
+                                    
+            
+            <dependency-type>uses</dependency-type>
+                                
+        
+        </dependent-module>
+                        
+        
+        <dependent-module archiveName="javassist-3.26.0-GA.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/BetsJSF/lib/hiber/required/javassist-3.26.0-GA.jar">
+                                    
+            
+            <dependency-type>uses</dependency-type>
+                                
+        
+        </dependent-module>
+                        
+        
+        <dependent-module archiveName="antlr-2.7.6.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/BetsJSF/lib/hiber/required/antlr-2.7.6.jar">
+                                    
+            
+            <dependency-type>uses</dependency-type>
+                                
+        
+        </dependent-module>
+                        
+        
+        <dependent-module archiveName="jta-1.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/BetsJSF/lib/hiber/required/jta-1.1.jar">
                                     
             
             <dependency-type>uses</dependency-type>
@@ -21,81 +112,28 @@
         
         </dependent-module>
                 
-        <dependent-module archiveName="hibernate-jpa-2.0-api-1.0.0.Final.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/BetsJSF/lib/hiber/jpa/hibernate-jpa-2.0-api-1.0.0.Final.jar">
-                        
-            <dependency-type>uses</dependency-type>
-                    
-        </dependent-module>
-                
-        <dependent-module archiveName="log4j-1.2.14.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/BetsJSF/lib/hiber/log4j-1.2.14.jar">
-                        
-            <dependency-type>uses</dependency-type>
-                    
-        </dependent-module>
-                
-        <dependent-module archiveName="slf4j-nop-1.6.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/BetsJSF/lib/hiber/slf4j-nop-1.6.2.jar">
-                        
-            <dependency-type>uses</dependency-type>
-                    
-        </dependent-module>
-                
-        <dependent-module archiveName="hibernate3.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/BetsJSF/lib/hiber/hibernate3.jar">
-                        
-            <dependency-type>uses</dependency-type>
-                    
-        </dependent-module>
-                
-        <dependent-module archiveName="commons-collections-3.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/BetsJSF/lib/hiber/required/commons-collections-3.1.jar">
-                        
-            <dependency-type>uses</dependency-type>
-                    
-        </dependent-module>
-                
-        <dependent-module archiveName="dom4j-2.1.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/BetsJSF/lib/hiber/required/dom4j-2.1.1.jar">
-                        
-            <dependency-type>uses</dependency-type>
-                    
-        </dependent-module>
-                
-        <dependent-module archiveName="slf4j-api-1.6.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/BetsJSF/lib/hiber/required/slf4j-api-1.6.1.jar">
-                        
-            <dependency-type>uses</dependency-type>
-                    
-        </dependent-module>
-                
-        <dependent-module archiveName="javassist-3.26.0-GA.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/BetsJSF/lib/hiber/required/javassist-3.26.0-GA.jar">
-                        
-            <dependency-type>uses</dependency-type>
-                    
-        </dependent-module>
-                
-        <dependent-module archiveName="antlr-2.7.6.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/BetsJSF/lib/hiber/required/antlr-2.7.6.jar">
-                        
-            <dependency-type>uses</dependency-type>
-                    
-        </dependent-module>
-                
-        <dependent-module archiveName="jta-1.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/BetsJSF/lib/hiber/required/jta-1.1.jar">
-                        
-            <dependency-type>uses</dependency-type>
-                    
-        </dependent-module>
         <dependent-module archiveName="mariadb-java-client-3.3.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/BetsJSF/lib/mariadb-java-client-3.3.0.jar">
+                        
             <dependency-type>uses</dependency-type>
+                    
         </dependent-module>
-                                
+                                        
+        
         
         
         <property name="context-root" value="BetsJSF"/>
-                                
+                                        
+        
         
         
         <property name="java-output-path" value="/BetsJSF/build/classes"/>
-                            
+                                    
+    
     
     
     </wb-module>
-            
+                
+
 
 
 </project-modules>

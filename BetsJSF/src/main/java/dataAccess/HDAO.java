@@ -225,15 +225,17 @@ public class HDAO {
 		try {
 			Query q = session.createQuery("from User where usuario= :name");
 			q.setParameter("name", Usuario);
-			result = (List<User>) q.list();
+			result = q.list();
 			session.getTransaction().commit();
 		} catch (Exception ex) {
 			System.out.println("Error: " + ex.toString());
 			result = null;
 		}
-		if (result.size() == 0) {
+		if (result == null) {
+			System.out.println("vacio");
 			return null;
 		} else {
+			System.out.println(result.get(0));
 			return result.get(0);
 		}
 	}
@@ -258,6 +260,7 @@ public class HDAO {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	public Vector<Date> getEventsMonth(Date date) {
 		Session sess = sessionFactory.getCurrentSession();
 		sess.beginTransaction();

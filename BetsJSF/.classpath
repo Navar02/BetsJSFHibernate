@@ -44,8 +44,6 @@
 	<classpathentry kind="lib" path="lib/hiber/hibernate3.jar"/>
 	<classpathentry kind="lib" path="lib/hiber/log4j-1.2.14.jar"/>
 	<classpathentry kind="lib" path="lib/hiber/slf4j-nop-1.6.2.jar"/>
-	<classpathentry kind="lib" path="lib/mariadb-java-client-3.3.0.jar"/>
-	<classpathentry kind="lib" path="C:/Users/jnava/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/2.3.2/jakarta.xml.bind-api-2.3.2.jar" sourcepath="C:/Users/jnava/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/2.3.2/jakarta.xml.bind-api-2.3.2-sources.jar">
 		<attributes>
 			<attribute name="maven.pomderived" value="true"/>
 			<attribute name="maven.groupId" value="jakarta.xml.bind"/>
@@ -54,5 +52,6 @@
 			<attribute name="maven.scope" value="compile"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="lib/mariadb-java-client-3.3.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
