@@ -17,6 +17,11 @@
   <managed-bean-class>modelo.bean.QueryQuestionBean</managed-bean-class>
   <managed-bean-scope>session</managed-bean-scope>
  </managed-bean>
+ <managed-bean>
+ 	<managed-bean-name>register</managed-bean-name>
+ 	<managed-bean-class>modelo.bean.RegisterBean</managed-bean-class>
+ 	<managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
  <navigation-rule>
   <display-name>Menu.xhtml</display-name>
   <from-view-id>/Menu.xhtml</from-view-id>

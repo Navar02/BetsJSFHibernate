@@ -4,23 +4,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
 import businessLogic.BLFacade;
 import businessLogic.BLFacadeImplementation;
 
+@ManagedBean
+@RequestScoped
+public class RegisterBean {
 
-public class LoginBean {
-	
 	private String nombre;
 	private String password;
+	private String passwords;
 	private String tipo;
 	private static List<String> tipos=new ArrayList<String>();
 	private BLFacade bl=new BLFacadeImplementation();
 	
-	public LoginBean() {
+	public RegisterBean() {
 		
 	}
+	
 	public String getNombre() {
 		return nombre;
 	}
@@ -32,6 +37,12 @@ public class LoginBean {
 	}
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	public String getPasswords() {
+		return passwords;
+	}
+	public void setPasswords(String passwords) {
+		this.passwords = passwords;
 	}
 	
 	public void setTipo(String tipo) {
@@ -47,26 +58,27 @@ public class LoginBean {
 	}
 	
 	public String comprobar() {
-		if(nombre.equals("admin") && password.equals("1234")) {
-			setTipo("admin");
-			return "admin";
-		}else if(nombre.equals("admin") && !password.equals("1234")) {
+		if(!passValida()){
 			FacesContext.getCurrentInstance().addMessage(null, 
-					 new FacesMessage("Error: Acceso incorrecto al administrador"));
+					 new FacesMessage("Error: La contraseña debe tener una letra"
+					 		+ " mayuscula otra minuscula, un número,"
+					 		+ "un caracter especial y debe tener entre 6 y 20 carateres."));
 			 return null;
-		}else if(!nombre.equals(bl.getUser(nombre).getUsuario())) {
+		}else if(!password.equals(passwords)){
 			FacesContext.getCurrentInstance().addMessage(null, 
-					 new FacesMessage("Error: No existe un usuario con ese nombre."));
+					 new FacesMessage("Error: Las contraseñas son diferentes."));
 			return null;
-		}else if(nombre.equals(bl.getUser(nombre).getUsuario()) && !password.equals(bl.getUser(nombre).getPassword())) {
+		}else if(nombre.equals(bl.getUser(nombre).getUsuario())) {
 			FacesContext.getCurrentInstance().addMessage(null, 
-					 new FacesMessage("Error: Contraseña incorrecta."));
+					 new FacesMessage("Error: Ya existe un usuario con ese nombre."));
 			return null;
 		}else {
-			return "user";
+			setTipo("user");
+			bl.addUsuario(nombre, password);
+			return "ok";
 		}
+		
 	}
-	
 	
 	public boolean passValida() {
 		// combrobar q la longitd esta enre 6 y 20
@@ -152,4 +164,5 @@ public class LoginBean {
         // if all conditions fails
         return true;
     }
+	
 }
