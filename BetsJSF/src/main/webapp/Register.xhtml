@@ -4,38 +4,43 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core">
-	<!--xmlns:p="http://primefaces.org/ui"-->
+<!--xmlns:p="http://primefaces.org/ui"-->
 <f:view>
-<h:head><title>Register</title></h:head>
+	<h:head>
+		<title>Register</title>
+	</h:head>
 
-<h:body>
-<h:form>
-<h3>REGISTER </h3>
-<table>
-	<tr>
-	<td>Nombre de Usuario: </td>
-	<td><h:inputText id="nombre" value="#{register.nombre}">
-	</h:inputText></td>
-	</tr>
-	<tr>
-	<td>Contraseña:</td>
-	<td><h:inputSecret id="password" value="#{register.password}">
-		<f:validateLength minimum="6" maximum="20" ></f:validateLength>
-		<f:ajax execute="password" render="mensajes"/>
-	</h:inputSecret></td>
-	</tr>
-	<h:messages id="mensajes" style="red"/>
-	<tr>
-	<td>Repetir contraseña:</td>
-	<td><h:inputSecret id="passwords" value="#{register.passwords}">
-	</h:inputSecret></td>
-	</tr>
-	<h:messages id="mensajes" style="red"/>
-</table>
-<p>
-<h:commandButton value="Aceptar" action="#{register.comprobar}"/>
-</p>
-</h:form>
-</h:body>
+	<h:body>
+		<h:form>
+			<h3>REGISTER</h3>
+			<table>
+				<tr>
+					<td>Nombre de Usuario:</td>
+					<td><h:inputText id="nombre" value="#{register.nombre}">
+						</h:inputText></td>
+				</tr>
+				<tr>
+					<td>Contraseña:</td>
+					<td><h:inputSecret id="password" value="#{register.password}">
+							<f:validateLength minimum="6" maximum="20"></f:validateLength>
+							<f:ajax execute="password" render="mensajes" />
+						</h:inputSecret></td>
+				</tr>
+				<h:messages id="mensajes" style="red" />
+				<tr>
+					<td>Repetir contraseña:</td>
+					<td><h:inputSecret id="passwords"
+							value="#{register.passwords}">
+							<f:validateLength minimum="6" maximum="20"></f:validateLength>
+							<f:ajax execute="passwords" render="mensajes1" />
+						</h:inputSecret></td>
+				</tr>
+				<h:messages id="mensajes1" style="red" />
+			</table>
+			<p>
+				<h:commandButton value="Aceptar" action="#{register.comprobar}" />
+			</p>
+		</h:form>
+	</h:body>
 </f:view>
 </html>

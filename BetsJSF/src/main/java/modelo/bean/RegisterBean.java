@@ -68,7 +68,7 @@ public class RegisterBean {
 			FacesContext.getCurrentInstance().addMessage(null, 
 					 new FacesMessage("Error: Las contraseñas son diferentes."));
 			return null;
-		}else if(nombre.equals(bl.getUser(nombre).getUsuario())) {
+		}else if(null != bl.getUser(nombre)) {
 			FacesContext.getCurrentInstance().addMessage(null, 
 					 new FacesMessage("Error: Ya existe un usuario con ese nombre."));
 			return null;
