@@ -15,6 +15,9 @@ public class User {
 		this.usuario=usuario;
 		this.password=password;
 	}
+	public User() {
+		super();
+	}
 
 	public String getUsuario() {
 		return usuario;
