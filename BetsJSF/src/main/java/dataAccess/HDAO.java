@@ -131,61 +131,96 @@ public class HDAO {
 	 * @return the created question, or null, or an exception
 	 * @throws Exception 
 	 */
-	public Question createQuestion(Event event, String question, float betMinimum) throws Exception {
-		Session sess = sessionFactory.getCurrentSession();
-		sess.getTransaction().begin();
-		// Event ev = db.find(Event.class, event.getEventNumber());
-		
-		Question e = new Question();
-		Query q = sess.createQuery("from event lg where lg.eventNumber= :EvNum");
-		
-		q.setParameter("EvNum", event.getEventNumber());
-		
-		List ev = q.list();
-		
-		if(ev.size()==0 || ev.size()!=1) {
-			throw new Exception("Evento no existente.");
-		}
-		
-		if (((Event) ev.get(0)).DoesQuestionExists(question)) {
-			throw new QuestionAlreadyExist(ResourceBundle.getBundle("Etiquetas").getString("ErrorQueryAlreadyExist"));
-		}
-		
-		e.setEvent((Event) sess.get(Event.class, event.getEventNumber()));
-		e.setQuestion(question);
-		e.setBetMinimum(betMinimum);
-		
-		((Event) ev.get(0)).addQuestion(question, betMinimum);
-		Event ev1= (Event) ev.get(0);
-		sess.save(ev1);
-		sess.save(e);
-		sess.getTransaction().commit();
-		
-		return e;
-
+//	public Question createQuestion(Event event, String question, float betMinimum) throws Exception {
+//		Session sess = sessionFactory.getCurrentSession();
+//		sess.getTransaction().begin();
+//		// Event ev = db.find(Event.class, event.getEventNumber());
+//		
+//		Question e = new Question();
+//		//Query q = sess.createQuery("from event lg where lg.eventNumber= :EvNum");
+//		Query q = sess.createQuery("from event where event.eventNumber= :EvNum");
+//		
+//		q.setParameter("EvNum", event.getEventNumber());
+//		
+//		List ev = q.list();
+//		
+//		if(ev.size()==0 || ev.size()!=1) {
+//			throw new Exception("Evento no existente.");
+//		}
+//		
+//		if (((Event) ev.get(0)).DoesQuestionExists(question)) {
+//			throw new QuestionAlreadyExist(ResourceBundle.getBundle("Etiquetas").getString("ErrorQueryAlreadyExist"));
+//		}
+//		
+//		e.setEvent((Event) sess.get(Event.class, event.getEventNumber()));
+//		e.setQuestion(question);
+//		e.setBetMinimum(betMinimum);
+//		
+//		((Event) ev.get(0)).addQuestion(question, betMinimum);
+//		Event ev1= (Event) ev.get(0);
+//		sess.save(ev1);
+//		sess.save(e);
+////		sess.persist(ev1);
+////		sess.persist(e);
+//		sess.getTransaction().commit();
+//		
+//		return e;
+//
+//	}
+	public Question createQuestion(Event event, String question, float betMinimum) {
+			 Session s = HibernateUtil.getSessionFactory().getCurrentSession();
+			 s.beginTransaction();
+			 Query q=s.createQuery("from Event where eventNumber= :eventoN");
+			 q.setParameter("eventoN", event.getEventNumber());
+			 Event e= (Event) q.list().get(0);
+			 s.getTransaction().begin();
+			 Question que= e.addQuestion(question, betMinimum);
+			 s.persist(e);
+			 s.getTransaction().commit();
+			 return que;
 	}
 
 	@SuppressWarnings("unchecked")
-	public Vector<Event> getEvents(Date date) {
+	public List<Event> getEvents(Date date) {
 		Session session = sessionFactory.getCurrentSession();
 		session.beginTransaction();
-		List<Event> result;
+		List<Event> result= new ArrayList<Event>();
+		List<Event> dat=new ArrayList<Event>();
 		try {
-			Query q = session.createQuery("from Event where eventDate= :fechia");
-			q.setParameter("fechia", date);
+			Query q = session.createQuery("from Event where eventDate= :fecha");
+			q.setParameter("fecha", date);
 			result = (List<Event>) q.list();
+			for(Event e:result) {
+				dat.add(e);
+			}
+			
 			session.getTransaction().commit();
 		} catch (Exception ex) {
 			System.out.println("Error: " + ex.toString());
 			result = null;
 		}
-		Vector<Event> resultFinal = new Vector<Event>();
-		Iterator<Event> i = result.iterator();
-		while (i.hasNext()) {
-			resultFinal.add((Event) i.next());
-		}
-		return resultFinal;
+		return dat;
 	}
+//	public Vector<Event> getEvents(Date date) {
+//		Session session = sessionFactory.getCurrentSession();
+//		session.beginTransaction();
+//		List<Event> result;
+//		try {
+//			Query q = session.createQuery("from Event where eventDate= :fechia");
+//			q.setParameter("fechia", date);
+//			result = (List<Event>) q.list();
+//			session.getTransaction().commit();
+//		} catch (Exception ex) {
+//			System.out.println("Error: " + ex.toString());
+//			result = null;
+//		}
+//		Vector<Event> resultFinal = new Vector<Event>();
+//		Iterator<Event> i = result.iterator();
+//		while (i.hasNext()) {
+//			resultFinal.add((Event) i.next());
+//		}
+//		return resultFinal;
+//	}
 
 
 	/**

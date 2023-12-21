@@ -1,5 +1,6 @@
 package businessLogic;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
@@ -66,9 +67,12 @@ public class BLFacadeImplementation  implements BLFacade {
 	 * @param date in which events are retrieved
 	 * @return collection of events
 	 */
-	public Vector<Event> getEvents(Date date)  {
+	public List<Event> getEvents(Date date)  {
 		return newDB.getEvents(date);
 	}
+//	public Vector<Event> getEvents(Date date)  {
+//		return newDB.getEvents(date);
+//	}
 
 
 	/**

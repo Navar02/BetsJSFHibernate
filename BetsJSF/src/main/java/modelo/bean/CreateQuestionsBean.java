@@ -1,18 +1,22 @@
 package modelo.bean;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.Vector;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.event.AjaxBehaviorEvent;
 
 import org.primefaces.event.SelectEvent;
 
 import businessLogic.BLFacade;
 import businessLogic.BLFacadeImplementation;
+import configuration.UtilDate;
 import domain.Event;
+import exceptions.EventFinished;
+import exceptions.QuestionAlreadyExist;
 
 public class CreateQuestionsBean {
 	//Atributos necesarios para para crear/almacenar la interfaz grafica createQuestions
@@ -21,25 +25,21 @@ public class CreateQuestionsBean {
 	private String pregunta;
 	private Integer apuestaMinima;
 	private static List<Event> eventos=new ArrayList<Event>();
-	private static BLFacade bl=new BLFacadeImplementation();
+	private BLFacade bl=new BLFacadeImplementation();
 	
 	public CreateQuestionsBean() {
-		Vector<Event> v=bl.getEvents(fecha);
-		for(Event e:v) {
-			eventos.add(e);
-		}
+		eventos=bl.getEvents(fecha);		
 	}
 	
-	public static List<Event> getEventos(Date date) {
-		List<Event>evento= new ArrayList<Event>(getBl().getEvents(date));
-		return evento;
+	public List<Event> getEventos() {
+		return eventos;
 	}
 
-	public static void setEventos(List<Event> eventos) {
-		CreateQuestionsBean.eventos = eventos;
+	public void setEventos(List<Event> event) {
+		eventos = event;
 	}
 
-	public static BLFacade getBl() {
+	public BLFacade getBl() {
 		return bl;
 	}
 
@@ -56,8 +56,8 @@ public class CreateQuestionsBean {
 	public Event getEvento() {
 		return evento;
 	}
-	public void setEvento(Event eventos) {
-		this.evento = eventos;
+	public void setEvento(Event event) {
+		this.evento = event;
 	}
 	public String getPregunta() {
 		return pregunta;
@@ -73,13 +73,46 @@ public class CreateQuestionsBean {
 	}
 	
 	public void onDateSelect(SelectEvent event) {
-		/*
-		 * FacesContext.getCurrentInstance().addMessage(null, new
-		 * FacesMessage("Fecha escogida: "+event.getObject()));
-		 */
-		getEventos((Date)event.getObject());
+		
+		 fecha=(Date)event.getObject();
+		 eventos=bl.getEvents(fecha);
+		 System.out.println(eventos.toString());
+		 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Fecha escogida. "+event.getObject()));
+	}
+
+	public void eventosEnFecha(Date dia) {
+		eventos.clear();
+		
+		eventos=bl.getEvents(dia);
+		System.out.println(eventos);
+	
 	}
 	
+	
+	public void crearPregunta() throws EventFinished, QuestionAlreadyExist {
+//		String res=comprobar();
+//		if(res.equals("ok")) {
+//			bl.createQuestion(evento, pregunta, apuestaMinima);
+//		}
+		if (this.getFecha()==null){
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Error: Debe seleccionar una fecha"));
+		}
+		//no elegido evento
+		else if(this.getEvento()==null){
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Error: Debe seleccionar un evento"));//return "error";
+		}
+		//no creada preegunta
+		else if(this.getPregunta()==null||this.getPregunta().equals("")) {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Error: Debe crear una pregunta"));
+		}
+		//no hay apuesta minima
+		else if(this.getApuestaMinima()==null) {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Error: Debe introducir una apuesta minima"));
+		}
+		else {
+			bl.createQuestion(evento, pregunta, apuestaMinima);
+		}
+	}
 	
 	public String comprobar() {
 		//no elegido fecha
@@ -102,8 +135,31 @@ public class CreateQuestionsBean {
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Error: Debe introducir una apuesta minima"));
 			return null;
 		}
-		else {
-			return "ok";
-		}
-	} 
+//		else {
+//			return "ok";
+//		}
+		return "ok";
+	}
+	
+	public static Event getObject(String event) {
+		 for (Event t: eventos){
+			if (event.equals(t.getDescription()))
+				return t;
+		 }
+		 return null;
+	}
+	
+	public void listener(AjaxBehaviorEvent event) {
+		 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("El tipo del usuario:"+evento.getEventNumber()+"/"+evento.getDescription()));
+	}
+	
+	public void onEventSelect(SelectEvent event) {
+		this.evento=(Event)event.getObject();
+		System.out.println(evento);
+		FacesContext.getCurrentInstance().addMessage("miForm:mensajes", new FacesMessage("El tipo del usuario (tabla):"+evento.getEventNumber()+"/"+evento.getDescription()));
+	}
+	
+	public String volver() {
+		return "volver";
+	}
 }
